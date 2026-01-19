@@ -1,0 +1,42 @@
+# fly.toml - Configuración para Fly.io
+# Instagram Quote Generator
+
+app = "instagram-quote-generator"
+primary_region = "mad" # Madrid - Cambiar según tu ubicación
+
+[build]
+  # No es necesario especificar nada, Fly detecta el Dockerfile automáticamente
+
+[env]
+  PORT = "8080"
+  FLASK_ENV = "production"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false  # Mantener siempre activo
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/health"
+
+# Configuración de máquina virtual
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
+
+# Configuración de escalado
+[http_service.concurrency]
+  type = "requests"
+  hard_limit = 250
+  soft_limit = 200
+
+# Configuración de despliegue
+[deploy]
+  strategy = "rolling"

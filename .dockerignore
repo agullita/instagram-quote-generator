@@ -1,0 +1,58 @@
+# .dockerignore para Instagram Quote Generator
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables (se configuran en Fly.io)
+.env
+.env.local
+
+# Output files (se generan en runtime)
+output/*.png
+output/*.jpg
+output/carousels/*.png
+output/carousels/*.jpg
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp_*
+*.tmp
+
+# Documentation (no necesaria en producción)
+*.md
+!README.md
+
+# Scripts locales
+start.bat
+start.sh
+start_telegram_bot.bat
+start_telegram_bot.sh
+
+# Tests
+test_*
